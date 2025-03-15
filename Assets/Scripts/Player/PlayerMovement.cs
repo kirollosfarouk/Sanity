@@ -1,81 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
-    public Camera playerCamera;
-    public float walkSpeed = 6f;
-    public float runSpeed = 12f;
-    public float jumpPower = 7f;
-    public float gravity = 10f;
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
-    public float defaultHeight = 2f;
-    public float crouchHeight = 1f;
-    public float crouchSpeed = 3f;
+    public float WalkSpeed = 6f;
+    public float Gravity = 10f;
 
-    private Vector3 moveDirection = Vector3.zero;
-    private float rotationX = 0;
-    private CharacterController characterController;
+    private Vector3 _moveDirection = Vector3.zero;
+    private CharacterController _characterController;
+    private InputSystem_Actions _input;
 
-    private bool canMove = true;
+    private bool _canMove = true;
+    private float _currentSpeed = 0f;
 
-    void Start()
+    private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        _input = new InputSystem_Actions();
+        _input.Enable();
+        _input.Player.AddCallbacks(this);
+        _currentSpeed = WalkSpeed;
     }
 
-    void Update()
+    private void Start()
     {
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        _characterController = GetComponent<CharacterController>();
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+    }
 
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
-        float movementDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+    private void Update()
+    {
+        var camRotationY = Camera.main.transform.rotation.eulerAngles.y;
+        var moveRotationQuaternion = Quaternion.AngleAxis(camRotationY, Vector3.up);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpPower;
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-        }
+        var curSpeed = _canMove ? _input.Player.Move.ReadValue<Vector2>().normalized * _currentSpeed : Vector2.zero;
+        float movementDirectionY = _moveDirection.y;
+        _moveDirection = moveRotationQuaternion * new Vector3(curSpeed.x, movementDirectionY, curSpeed.y);
 
-        if (!characterController.isGrounded)
+        if (!_characterController.isGrounded)
         {
-            moveDirection.y -= gravity * Time.deltaTime;
+            _moveDirection.y -= Gravity * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.R) && canMove)
-        {
-            characterController.height = crouchHeight;
-            walkSpeed = crouchSpeed;
-            runSpeed = crouchSpeed;
 
-        }
-        else
-        {
-            characterController.height = defaultHeight;
-            walkSpeed = 6f;
-            runSpeed = 12f;
-        }
+        _characterController.Move(_moveDirection * Time.deltaTime);
+    }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+    public void OnMove(InputAction.CallbackContext context)
+    {
+    }
 
-        if (canMove)
-        {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnPrevious(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnNext(InputAction.CallbackContext context)
+    {
     }
 }
