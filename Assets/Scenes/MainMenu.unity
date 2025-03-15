@@ -804,6 +804,7 @@ MonoBehaviour:
   IngameMenuRoot: {fileID: 363020864}
   LoadingRoot: {fileID: 1998914364}
   EventSystem: {fileID: 1747551518}
+  MenuMusic: {fileID: 11400000, guid: b7cb6a3afebe20243a62fe90500eab40, type: 2}
 --- !u!4 &451358390
 Transform:
   m_ObjectHideFlags: 0
