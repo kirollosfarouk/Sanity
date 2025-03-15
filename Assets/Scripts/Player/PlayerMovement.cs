@@ -5,12 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     public float WalkSpeed = 6f;
-    public float RunSpeed = 12f;
-    public float JumpPower = 7f;
     public float Gravity = 10f;
-    public float DefaultHeight = 2f;
-    public float CrouchHeight = 1f;
-    public float CrouchSpeed = 3f;
 
     private Vector3 _moveDirection = Vector3.zero;
     private CharacterController _characterController;
@@ -43,11 +38,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
         float movementDirectionY = _moveDirection.y;
         _moveDirection = moveRotationQuaternion * new Vector3(curSpeed.x, movementDirectionY, curSpeed.y);
 
-        if (_input.Player.Jump.IsPressed() && _canMove && _characterController.isGrounded)
-        {
-            _moveDirection.y = JumpPower;
-        }
-
         if (!_characterController.isGrounded)
         {
             _moveDirection.y -= Gravity * Time.deltaTime;
@@ -55,25 +45,6 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
 
         _characterController.Move(_moveDirection * Time.deltaTime);
-    }
-
-    public void OnCrouch(InputAction.CallbackContext context)
-    {
-        if (context.ReadValueAsButton() && _canMove)
-        {
-            _currentSpeed = CrouchSpeed;
-            _characterController.height = CrouchHeight;
-        }
-        else
-        {
-            _characterController.height = DefaultHeight;
-            _currentSpeed = WalkSpeed;
-        }
-    }
-
-    public void OnSprint(InputAction.CallbackContext context)
-    {
-        _currentSpeed = context.ReadValueAsButton() ? RunSpeed : WalkSpeed;
     }
 
     public void OnMove(InputAction.CallbackContext context)
