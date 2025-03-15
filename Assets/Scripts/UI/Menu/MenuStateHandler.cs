@@ -16,6 +16,8 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
     public GameObject LoadingRoot;
     public EventSystem EventSystem;
 
+    public MusicDefinition MenuMusic;
+
     private StateMachine<MenuStates, MenuTriggers> _stateMachine;
     private InputSystem_Actions _input;
     private SceneConfig _config;
@@ -113,6 +115,7 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
         LoadingRoot.SetActive(true);
         await SceneManager.LoadSceneAsync(_config.EmptyScene.BuildIndex);
         LoadingRoot.SetActive(false);
+        MusicPlayer.Instance.StartMusic(MenuMusic);
     }
 
     public void OnPause(InputAction.CallbackContext context)
