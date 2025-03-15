@@ -53,8 +53,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.76
-  m_Radius: 0.2
+  m_Height: 0.33
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -73,12 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkSpeed: 3
-  RunSpeed: 6
-  JumpPower: 3
   Gravity: 10
-  DefaultHeight: 0.76
-  CrouchHeight: 0.38
-  CrouchSpeed: 1.5
 --- !u!1 &3396278311592635529
 GameObject:
   m_ObjectHideFlags: 0
