@@ -15,6 +15,13 @@ namespace UI
         {
             slur = intialSlurs;
             _text.text = slur.SlurText;
+            _text.color = CategoryColor.SlurColors[slur.Category[0]];
+            _button.onClick.AddListener(Call);
+        }
+
+        private void Call()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

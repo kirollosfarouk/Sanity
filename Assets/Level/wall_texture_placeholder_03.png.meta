@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 1fdff613e73a2dd4b9d602c13cd80b5e
+guid: 880594608c649e746929f4a03c345e9b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6653824423615467181
-    second: boss1_trump_duel_0
-  - first:
-      213: -5258026794611538820
-    second: boss1_trump_duel_1
+      213: -6962630360482873158
+    second: wall_texture_placeholder_03_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -142,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_trump_duel_0
+      name: wall_texture_placeholder_03_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 615
-        height: 999
+        x: 0
+        y: 0
+        width: 1009
+        height: 1857
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,30 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dae0b6f4f02275c50800000000000000
-      internalID: 6653824423615467181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_trump_duel_1
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 1001
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7481bf0d7cb707b0800000000000000
-      internalID: -5258026794611538820
+      spriteID: ab08115a394cf5f90800000000000000
+      internalID: -6962630360482873158
       vertices: []
       indices: 
       edges: []
@@ -199,8 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      boss1_trump_duel_0: 6653824423615467181
-      boss1_trump_duel_1: -5258026794611538820
+      wall_texture_placeholder_03_0: -6962630360482873158
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
