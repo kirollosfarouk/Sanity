@@ -9,8 +9,8 @@ namespace Fight
         public bool ReadyToFight { get; }
         public float StartingHealth { get; }
         public float CurrentHealth { get; }
-        public void Inialize(List<Slurs.Slurs> intialSlurs, List<SlurCategory> oponentWeakPoints, float maxHealth);
-        public List<Slurs.Slurs> Fight();
+        public void Inialize(List<Slurs.Slur> intialSlurs, List<SlurCategory> oponentWeakPoints, float maxHealth);
+        public List<Slurs.Slur> Fight();
         public bool TakeDamage(float damage);
         public List<SlurCategory> GetWeakPoints();
     }

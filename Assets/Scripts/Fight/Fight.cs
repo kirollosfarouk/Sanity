@@ -11,8 +11,8 @@ namespace Fight
     {
         public FightTurn currentTurn { get; private set; }
         private Opponent _opponent;
-        private PlayerFighter _playerFighter;
-
+        public PlayerFighter _playerFighter;
+        public bool FightEnded { get; private set; }
         public void StartFight(Opponent opponent,PlayerFighter playerFighter)
         {
             _opponent = opponent;
@@ -28,24 +28,28 @@ namespace Fight
                 case FightTurn.Opponent:
                 {
                     var slursList = _opponent.Fight();
-                    Debug.Log($" opponent attack {slursList}");
+                    Debug.Log($" opponent attack {String.Join(",", slursList.Select(x => x.SlurText).ToList())}");
                     var damage = CalculateDamage(slursList, _playerFighter.GetWeakPoints());
                     Debug.Log($" opponent damage {damage}");
-                    _playerFighter.TakeDamage(damage);
+                    bool playerDied = _playerFighter.TakeDamage(damage);
+                    FightEnded |= playerDied;
                     Debug.Log($"player health {_playerFighter.CurrentHealth}");
                     SwitchTurn();
                     break;
                 }
                 case FightTurn.Player when _playerFighter.ReadyToFight:
                 {
-                    _opponent.TakeDamage(CalculateDamage(_playerFighter.Fight(), _opponent.GetWeakPoints()));
+                    bool opponentDied = _opponent.TakeDamage(CalculateDamage(_playerFighter.Fight(), _opponent.GetWeakPoints()));
+                    FightEnded |= opponentDied;
                     Debug.Log($"opponent health {_opponent.CurrentHealth}");
                     SwitchTurn();
                     break;
                 }
-                default:
-                    Debug.Log("waiting for player to fight");
-                    break;
+            }
+
+            if (FightEnded)
+            {
+                Debug.Log("Fight Ended");
             }
         }
 
@@ -54,11 +58,11 @@ namespace Fight
             currentTurn = currentTurn == FightTurn.Opponent ? FightTurn.Player : FightTurn.Opponent;
         }
 
-        private float CalculateDamage(List<Slurs.Slurs> slurs, List<SlurCategory> weakPoints)
+        private float CalculateDamage(List<Slurs.Slur> slurs, List<SlurCategory> weakPoints)
         {
             float damage = 0;
 
-            foreach (Slurs.Slurs slur in slurs)
+            foreach (Slurs.Slur slur in slurs)
             {
                 damage += 5;
 

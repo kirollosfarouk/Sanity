@@ -6,45 +6,45 @@ namespace Slurs
 {
     public static class SlursGenerator
     {
-        public static List<Slurs> AllSlurs = new ();
-        public static List<Slurs> UnlockedSlurs = new();
+        public static List<Slur> AllSlurs = new ();
+        public static List<Slur> UnlockedSlurs = new();
 
         public static void LoadSlurs()
         {
             AllSlurs.AddRange(new[]
                 {
-                    new Slurs("weak", new List<SlurCategory> { SlurCategory.Physical }),
-                    new Slurs("baby", new List<SlurCategory> { SlurCategory.Physical, SlurCategory.Intellectual }),
-                    new Slurs("Stinken", new List<SlurCategory> { SlurCategory.Physical }),
-                    new Slurs("ugly", new List<SlurCategory> { SlurCategory.Visual }),
-                    new Slurs("scarecrow", new List<SlurCategory> { SlurCategory.Visual }),
-                    new Slurs("rolling", new List<SlurCategory> { SlurCategory.Visual }), 
-                    new Slurs("dumb", new List<SlurCategory> { SlurCategory.Intellectual }),
-                    new Slurs("lying", new List<SlurCategory> { SlurCategory.Intellectual }),
-                    new Slurs("Super", new List<SlurCategory> { SlurCategory.Intellectual }),
-                    new Slurs("Leg", new List<SlurCategory> { SlurCategory.Regular }),
-                    new Slurs("rolling", new List<SlurCategory> { SlurCategory.Regular }),
+                    new Slur("weak", new List<SlurCategory> { SlurCategory.Physical }),
+                    new Slur("baby", new List<SlurCategory> { SlurCategory.Physical, SlurCategory.Intellectual }),
+                    new Slur("Stinken", new List<SlurCategory> { SlurCategory.Physical }),
+                    new Slur("ugly", new List<SlurCategory> { SlurCategory.Visual }),
+                    new Slur("scarecrow", new List<SlurCategory> { SlurCategory.Visual }),
+                    new Slur("rolling", new List<SlurCategory> { SlurCategory.Visual }), 
+                    new Slur("dumb", new List<SlurCategory> { SlurCategory.Intellectual }),
+                    new Slur("lying", new List<SlurCategory> { SlurCategory.Intellectual }),
+                    new Slur("Super", new List<SlurCategory> { SlurCategory.Intellectual }),
+                    new Slur("Leg", new List<SlurCategory> { SlurCategory.Regular }),
+                    new Slur("rolling", new List<SlurCategory> { SlurCategory.Regular }),
                 }
             );
 
             UnlockedSlurs.AddRange(new[]
             {
-                new Slurs("weak", new List<SlurCategory> { SlurCategory.Physical }),
-                new Slurs("baby", new List<SlurCategory> { SlurCategory.Physical, SlurCategory.Intellectual }),
-                new Slurs("Stinken", new List<SlurCategory> { SlurCategory.Physical }),
-                new Slurs("Super", new List<SlurCategory> { SlurCategory.Regular }),
-                new Slurs("Leg", new List<SlurCategory> { SlurCategory.Regular }),
-                new Slurs("rolling", new List<SlurCategory> { SlurCategory.Regular })
+                new Slur("weak", new List<SlurCategory> { SlurCategory.Physical }),
+                new Slur("baby", new List<SlurCategory> { SlurCategory.Physical, SlurCategory.Intellectual }),
+                new Slur("Stinken", new List<SlurCategory> { SlurCategory.Physical }),
+                new Slur("Super", new List<SlurCategory> { SlurCategory.Regular }),
+                new Slur("Leg", new List<SlurCategory> { SlurCategory.Regular }),
+                new Slur("rolling", new List<SlurCategory> { SlurCategory.Regular })
             });
         }
 
-        public static List<Slurs> AddNewSlur(Slurs slurs)
+        public static List<Slur> AddNewSlur(Slur slur)
         {
-            UnlockedSlurs.Add(slurs);
+            UnlockedSlurs.Add(slur);
             return UnlockedSlurs;
         }
 
-        public static List<Slurs> GetRandomSlurs(int count)
+        public static List<Slur> GetRandomSlurs(int count)
         {
             Random random = new();
             return AllSlurs.OrderBy(x => random.Next()).Take(count).ToList();
