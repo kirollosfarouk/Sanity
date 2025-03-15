@@ -5,7 +5,7 @@ namespace UI
     public class Slurs
     {
         public string SlurText { get; }
-        private List<SlurCategory> Category { get; }
+        public List<SlurCategory> Category { get; }
 
         public Slurs(string slurText, List<SlurCategory> category)
         {
