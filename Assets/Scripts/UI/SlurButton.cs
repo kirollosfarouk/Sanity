@@ -1,4 +1,5 @@
-﻿using Slurs;
+﻿using Fight;
+using Slurs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,19 +11,19 @@ namespace UI
         [SerializeField] Button _button;
         [SerializeField] TextMeshProUGUI _text;
         
-        private Slurs.Slurs slur;
+        private Slur _slur;
         
-        public void Initialize(Slurs.Slurs intialSlurs)
+        public void Initialize(Slurs.Slur intialSlur)
         {
-            slur = intialSlurs;
-            _text.text = slur.SlurText;
-            _text.color = CategoryColor.SlurColors[slur.Category[0]];
+            _slur = intialSlur;
+            _text.text = _slur.SlurText;
+            _text.color = CategoryColor.SlurColors[_slur.Category[0]];
             _button.onClick.AddListener(Call);
         }
 
         private void Call()
         {
-            throw new System.NotImplementedException();
+            FightManager.Instance.WordSelected( _slur);
         }
     }
 }
