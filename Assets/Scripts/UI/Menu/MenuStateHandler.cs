@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Eflatun.SceneReference;
 using Stateless;
 using UI.Menu;
 using UnityEngine;
@@ -12,20 +11,47 @@ using UnityEditor;
 
 public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
 {
-    public SceneReference GameScene;
-    public SceneReference EmptyScene;
-
-
     public GameObject MainMenuRoot;
     public GameObject IngameMenuRoot;
     public GameObject LoadingRoot;
     public EventSystem EventSystem;
 
-    private readonly StateMachine<MenuStates, MenuTriggers> _stateMachine = new(MenuStates.StartUp);
+    private StateMachine<MenuStates, MenuTriggers> _stateMachine;
     private InputSystem_Actions _input;
+    private SceneConfig _config;
 
-    public MainMenuView()
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    public static void Initialize()
     {
+        if (SceneManager.GetActiveScene().name != SceneConfig.Instance.MenuScene.Name)
+        {
+            SceneManager.LoadScene(SceneConfig.Instance.MenuScene.BuildIndex, LoadSceneMode.Additive);
+        }
+    }
+
+    public void Awake()
+    {
+        _input = new InputSystem_Actions();
+        _input.Menu.AddCallbacks(this);
+        _input.Menu.Enable();
+        _config = SceneConfig.Instance;
+
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(EventSystem.gameObject);
+        DontDestroyOnLoad(MainMenuRoot);
+        DontDestroyOnLoad(IngameMenuRoot);
+        DontDestroyOnLoad(LoadingRoot);
+
+        MainMenuRoot.SetActive(false);
+        IngameMenuRoot.SetActive(false);
+        LoadingRoot.SetActive(false);
+
+        var initialState = MenuStates.Ingame;
+        if (SceneManager.GetActiveScene().name == SceneConfig.Instance.MenuScene.Name)
+            initialState = MenuStates.StartUp;
+        _stateMachine = new StateMachine<MenuStates, MenuTriggers>(initialState);
+
         _stateMachine.Configure(MenuStates.StartUp)
             .Permit(MenuTriggers.Initialized, MenuStates.MainMenu);
 
@@ -52,23 +78,6 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
 
         _stateMachine.Configure(MenuStates.GameOver)
             .Permit(MenuTriggers.Exit, MenuStates.MainMenu);
-    }
-
-    public void Awake()
-    {
-        _input = new InputSystem_Actions();
-        _input.Menu.AddCallbacks(this);
-        _input.Menu.Enable();
-
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(EventSystem.gameObject);
-        DontDestroyOnLoad(MainMenuRoot);
-        DontDestroyOnLoad(IngameMenuRoot);
-        DontDestroyOnLoad(LoadingRoot);
-
-        MainMenuRoot.SetActive(false);
-        IngameMenuRoot.SetActive(false);
-        LoadingRoot.SetActive(false);
 
         _stateMachine.FireAsync(MenuTriggers.Initialized);
     }
@@ -95,13 +104,15 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
     private async Task LoadIngame()
     {
         LoadingRoot.SetActive(true);
-        await SceneManager.LoadSceneAsync(GameScene.BuildIndex);
+        await SceneManager.LoadSceneAsync(_config.GameScene.BuildIndex);
         LoadingRoot.SetActive(false);
     }
 
     private async Task LoadEmptyScene()
     {
-        await SceneManager.LoadSceneAsync(EmptyScene.BuildIndex);
+        LoadingRoot.SetActive(true);
+        await SceneManager.LoadSceneAsync(_config.EmptyScene.BuildIndex);
+        LoadingRoot.SetActive(false);
     }
 
     public void OnPause(InputAction.CallbackContext context)
