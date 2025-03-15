@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Battle
   m_EditorClassIdentifier: 
   Clip: {fileID: 8300000, guid: 3df8a3666edbd0a43b75d2679cc4386b, type: 3}
-  LoopStartTime: 64.533
+  LoopStartTime: 66.532
   LoopEndTime: 88.989
