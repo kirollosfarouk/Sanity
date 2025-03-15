@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy1_elon_duel_0: -1452014987888458824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
