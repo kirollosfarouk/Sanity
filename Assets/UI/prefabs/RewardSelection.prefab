@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RewardButtonPrefab: {fileID: 4215081204294939822, guid: 9d6a449f239fdfe458d2c8cb7895f777, type: 3}
   RewardButtonRoot: {fileID: 6644525132846246943}
+  RewardAudioClip: {fileID: 8300000, guid: c4285ddb371184e41962cfaf3954e54c, type: 3}
 --- !u!223 &1061661978950599534
 Canvas:
   m_ObjectHideFlags: 0

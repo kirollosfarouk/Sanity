@@ -10,6 +10,7 @@ public class RewardSelectionView : MonoBehaviour
 
     public RewardButton RewardButtonPrefab;
     public Transform RewardButtonRoot;
+    public AudioClip RewardAudioClip;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class RewardSelectionView : MonoBehaviour
         }
 
         gameObject.SetActive(true);
+        SFXPlayer.Instance.PlaySFX(RewardAudioClip);
     }
 
     public void Select(Slur reward)
