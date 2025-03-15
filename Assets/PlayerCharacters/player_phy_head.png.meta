@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: c6bc6b501e4dd7e41b484e483e1f4ca9
+guid: cf337ab9ddaa77a41b056acc8c06e83d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6653824423615467181
-    second: boss1_trump_duel_0
-  - first:
-      213: -5258026794611538820
-    second: boss1_trump_duel_1
+      213: 7519688168008532435
+    second: player_phy_head_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_trump_duel_0
+      name: player_phy_head_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 615
-        height: 999
+        x: 19
+        y: 101
+        width: 204
+        height: 185
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dae0b6f4f02275c50800000000000000
-      internalID: 6653824423615467181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_trump_duel_1
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 1001
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7481bf0d7cb707b0800000000000000
-      internalID: -5258026794611538820
+      spriteID: 3d14bdb3c8c4b5860800000000000000
+      internalID: 7519688168008532435
       vertices: []
       indices: 
       edges: []
@@ -159,9 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      boss1_trump_duel_0: 6653824423615467181
-      boss1_trump_duel_1: -5258026794611538820
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
