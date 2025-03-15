@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -9,17 +11,24 @@ public class VolumeSlider : MonoBehaviour
     public string PropertyName;
     private Slider _slider;
 
-    public void Start()
+    public void Awake()
     {
         _slider = GetComponent<Slider>();
-        if (Mixer.GetFloat(PropertyName, out var value))
-        {
-            _slider.value = Mathf.Pow(10, value / 10);
-        }
+        _slider.value = PlayerPrefs.GetFloat(PropertyName, 0f);
+        Initialize(_slider.value);
+        _slider.onValueChanged.AddListener(SetVolume);
     }
 
-    public void Update()
+    private async void Initialize(float value)
     {
-        Mixer.SetFloat(PropertyName, 10 * Mathf.Log10(_slider.value));
+        await Task.Yield();
+        SetVolume(value);
+    }
+
+    private void SetVolume(float value)
+    {
+        Mixer.SetFloat(PropertyName, value);
+        PlayerPrefs.SetFloat(PropertyName, value);
+        PlayerPrefs.Save();
     }
 }
