@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace UI
+namespace Slurs
 {
     public static class SlursGenerator
     {
@@ -40,6 +42,12 @@ namespace UI
         {
             UnlockedSlurs.Add(slurs);
             return UnlockedSlurs;
+        }
+
+        public static List<Slurs> GetRandomSlurs(int count)
+        {
+            Random random = new();
+            return AllSlurs.OrderBy(x => random.Next()).Take(count).ToList();
         }
     }
 }
