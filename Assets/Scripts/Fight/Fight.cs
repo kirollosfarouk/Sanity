@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Slurs;
-using UI;
 using UnityEngine;
 
 namespace Fight
