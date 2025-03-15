@@ -445,6 +445,8 @@ GameObject:
   - component: {fileID: 401326151810300119}
   - component: {fileID: 2346568576540794175}
   - component: {fileID: 447247627212557769}
+  - component: {fileID: 1654922421373073325}
+  - component: {fileID: 7330414787846954436}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -539,6 +541,33 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1654922421373073325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433567952839890184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+--- !u!114 &7330414787846954436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433567952839890184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd28e511e63a68a4193e37c0789ee4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Click: {fileID: 8300000, guid: 4c1ff794ec71bba4b82fe10a4187eaa7, type: 3}
+  Hover: {fileID: 8300000, guid: 5aa5f1e881a8aad4499650c2f9aa2cdc, type: 3}
 --- !u!1 &7543449539187678064
 GameObject:
   m_ObjectHideFlags: 0

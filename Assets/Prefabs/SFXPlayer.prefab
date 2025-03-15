@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3760387128958546336
+--- !u!1 &7633809293808846908
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3803783712726554386}
-  - component: {fileID: 4116483215942249629}
-  - component: {fileID: 8051821621680973372}
+  - component: {fileID: 5262042200961008671}
+  - component: {fileID: 8759830911750455403}
+  - component: {fileID: 439367078665915239}
   m_Layer: 0
-  m_Name: MusicPlayer
+  m_Name: SFXPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3803783712726554386
+--- !u!4 &5262042200961008671
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3760387128958546336}
+  m_GameObject: {fileID: 7633809293808846908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,28 +33,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4116483215942249629
+--- !u!114 &8759830911750455403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3760387128958546336}
+  m_GameObject: {fileID: 7633809293808846908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e8840a0326f0749b17c3f67dac1a6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 809b5a339bfe44e48ad6be75e0279768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &8051821621680973372
+--- !u!82 &439367078665915239
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3760387128958546336}
+  m_GameObject: {fileID: 7633809293808846908}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3071094019273046389, guid: db97d026617618d48824baca45e5b4f4, type: 2}
+  OutputAudioMixerGroup: {fileID: -4803818602700694983, guid: db97d026617618d48824baca45e5b4f4, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

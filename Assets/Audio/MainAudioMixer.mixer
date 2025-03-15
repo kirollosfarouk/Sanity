@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-4803818602700694983
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 03370b3639b50384a8f91d744e570cce
+  m_Children: []
+  m_Volume: bcdcc85bc93a2dd46a5833ad5d083c3f
+  m_Pitch: 83cb6b8a6b1e9fd47ada875720f88756
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -2132392875481234235}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-3304534856551275450
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -33,16 +52,31 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-2132392875481234235
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 0eca354a92397304dbb27b4fcddb6a68
+  m_EffectName: Attenuation
+  m_MixLevel: 73e8769666037d846b3d6f58f473fd5c
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-593105018228658366
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SFX
+  m_Name: SFXVolume
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 2f246595f43c389438f7728fbd30b215
-  m_Children: []
+  m_Children:
+  - {fileID: -4803818602700694983}
   m_Volume: 45944108bf3a13b4b83422b1dd120ca6
   m_Pitch: 9f81ceea1e3f23445a485157eeed3a03
   m_Send: 00000000000000000000000000000000
@@ -80,6 +114,7 @@ AudioMixerController:
     - 2e24b57b3af34f74e87fd2b0a8676484
     - 2f246595f43c389438f7728fbd30b215
     - c857f9e1a2b1fc24aa9d62ce31af3ba9
+    - 03370b3639b50384a8f91d744e570cce
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -131,6 +166,7 @@ AudioMixerSnapshotController:
     72977c91ecbc46541bbd9a9a4742373d: -0.0024418721
     50b77e673d2eba34089448951e90259c: -10
     e7f4e2b80bf300448b377c00b7fd02ad: 0
+    bcdcc85bc93a2dd46a5833ad5d083c3f: -10
   m_TransitionOverrides: {}
 --- !u!243 &1286860293192476258
 AudioMixerGroupController:
