@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using UI;
+using Slurs;
 
 namespace Fight
 {
@@ -9,16 +9,16 @@ namespace Fight
         public float StartingHealth { get; }
         public float CurrentHealth { get; private set; }
 
-        private List<Slurs> availableSlurs = new ();
-        private List<SlurCategory> weakPoints = new ();
+        private List<Slurs.Slurs> availableSlurs = new();
+        private List<SlurCategory> weakPoints = new();
 
-        public void Inialize(List<Slurs> intialSlurs, List<SlurCategory> oponentWeakPoints)
+        public void Inialize(List<Slurs.Slurs> intialSlurs, List<SlurCategory> oponentWeakPoints, float maxHealth)
         {
             availableSlurs.AddRange(intialSlurs);
             weakPoints.AddRange(oponentWeakPoints);
         }
 
-        public List<Slurs> Fight()
+        public List<Slurs.Slurs> Fight()
         {
             throw new System.NotImplementedException();
         }

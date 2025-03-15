@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Slurs;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,9 @@ namespace UI
         [SerializeField] Button _button;
         [SerializeField] TextMeshProUGUI _text;
         
-        private Slurs slur;
+        private Slurs.Slurs slur;
         
-        public void Initialize(Slurs intialSlurs)
+        public void Initialize(Slurs.Slurs intialSlurs)
         {
             slur = intialSlurs;
             _text.text = slur.SlurText;

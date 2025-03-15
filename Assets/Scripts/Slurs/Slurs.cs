@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UI
+namespace Slurs
 {
     public class Slurs
     {
