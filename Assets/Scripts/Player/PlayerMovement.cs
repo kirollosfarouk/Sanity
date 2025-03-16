@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     public float WalkSpeed = 6f;
     public float Gravity = 10f;
+    public AudioSource FootstepSource;
 
     private Vector3 _moveDirection = Vector3.zero;
     private CharacterController _characterController;
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     private bool _canMove = true;
     private float _currentSpeed = 0f;
+    private Animator _animator;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -45,6 +49,10 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
 
         _characterController.Move(_moveDirection * Time.deltaTime);
+
+        var velocity = _characterController.velocity.magnitude;
+        _animator.SetFloat("Speed", velocity);
+        FootstepSource?.gameObject.SetActive(velocity > 0);
     }
 
     public void OnMove(InputAction.CallbackContext context)

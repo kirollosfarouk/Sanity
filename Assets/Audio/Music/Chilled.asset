@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1d242d192e7e24a9569cbc55f38f0f, type: 3}
   m_Name: Chilled
   m_EditorClassIdentifier: 
-  Clip: {fileID: 8300000, guid: 00c4182cf35c33a4b924fd8d5b7cddbd, type: 3}
+  Clip: {fileID: 8300000, guid: e48329e31c84ed743b9132e651cb704e, type: 3}
   LoopStartTime: 66.532
   LoopEndTime: 88.989

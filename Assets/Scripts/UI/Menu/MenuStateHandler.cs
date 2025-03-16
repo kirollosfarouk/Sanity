@@ -10,11 +10,16 @@ using UnityHFSM;
 using UnityEditor;
 #endif
 
-public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
+public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
 {
+    public static MenuStateHandler Instance => _instance;
+    private static MenuStateHandler _instance;
+
     public GameObject MainMenuRoot;
     public GameObject IngameMenuRoot;
     public GameObject LoadingRoot;
+    public GameObject GameWonRoot;
+    public GameObject GameLostRoot;
     public EventSystem EventSystem;
 
     public MusicDefinition MenuMusic;
@@ -22,7 +27,6 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
     private StateMachine<MenuStates, MenuTriggers> _stateMachine;
     private InputSystem_Actions _input;
     private SceneConfig _config;
-
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void Initialize()
@@ -35,20 +39,34 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
 
     public void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         _input = new InputSystem_Actions();
         _input.Menu.AddCallbacks(this);
         _input.Menu.Enable();
         _config = SceneConfig.Instance;
 
-        DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(EventSystem.gameObject);
         DontDestroyOnLoad(MainMenuRoot);
         DontDestroyOnLoad(IngameMenuRoot);
+        DontDestroyOnLoad(GameWonRoot);
+        DontDestroyOnLoad(GameLostRoot);
         DontDestroyOnLoad(LoadingRoot);
 
         MainMenuRoot.SetActive(false);
         IngameMenuRoot.SetActive(false);
         LoadingRoot.SetActive(false);
+        GameWonRoot.SetActive(false);
+        GameLostRoot.SetActive(false);
 
         var initialState = MenuStates.Ingame;
         if (SceneManager.GetActiveScene().name == SceneConfig.Instance.MenuScene.Name)
@@ -70,7 +88,8 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
 
         _stateMachine.AddState(MenuStates.Ingame);
         _stateMachine.AddTriggerTransition(MenuTriggers.Pause, MenuStates.Ingame, MenuStates.PauseMenu);
-        _stateMachine.AddTriggerTransition(MenuTriggers.GameOver, MenuStates.Ingame, MenuStates.GameOver);
+        _stateMachine.AddTriggerTransition(MenuTriggers.GameWon, MenuStates.Ingame, MenuStates.GameWon);
+        _stateMachine.AddTriggerTransition(MenuTriggers.GameLost, MenuStates.Ingame, MenuStates.GameLost);
 
         _stateMachine.AddState(MenuStates.Exit, onEnter: _ => Quit());
 
@@ -78,8 +97,10 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
         _stateMachine.AddTriggerTransition(MenuTriggers.Pause, MenuStates.PauseMenu, MenuStates.Ingame);
         _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.PauseMenu, MenuStates.LoadMainMenu);
 
-        _stateMachine.AddState(MenuStates.GameOver);
-        _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.GameOver, MenuStates.LoadMainMenu);
+        _stateMachine.AddState(MenuStates.GameWon, onEnter: _ => GameWonRoot?.SetActive(true), onExit: _ => GameWonRoot?.SetActive(false));
+        _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.GameWon, MenuStates.LoadMainMenu);
+        _stateMachine.AddState(MenuStates.GameLost, onEnter: _ => GameLostRoot?.SetActive(true), onExit: _ => GameLostRoot?.SetActive(false));
+        _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.GameLost, MenuStates.LoadMainMenu);
 
         _stateMachine.SetStartState(initialState);
         _stateMachine.Init();
@@ -99,6 +120,16 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
     public void Exit()
     {
         _stateMachine.Trigger(MenuTriggers.Exit);
+    }
+
+    public void Won()
+    {
+        _stateMachine.Trigger(MenuTriggers.GameWon);
+    }
+
+    public void Lost()
+    {
+        _stateMachine.Trigger(MenuTriggers.GameLost);
     }
 
     public void TogglePause()
