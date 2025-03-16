@@ -8668,6 +8668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2053862217}
+  - component: {fileID: 2053862218}
   m_Layer: 0
   m_Name: Pole
   m_TagString: Untagged
@@ -8693,6 +8694,19 @@ Transform:
   - {fileID: 1578587598}
   m_Father: {fileID: 1759084560}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2053862218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053862216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae4171e6f3714640abbc9a3dd719819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Threshold: 2
 --- !u!1 &2069075309
 GameObject:
   m_ObjectHideFlags: 0
@@ -9205,10 +9219,6 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d540c1d050a6f5049822bc5459da25f2, type: 2}
-    - target: {fileID: 7695171410731213832, guid: 9005c2addb70c2a44881589a6f2fb8c6, type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7920415410918029106, guid: 9005c2addb70c2a44881589a6f2fb8c6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

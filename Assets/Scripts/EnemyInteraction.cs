@@ -50,7 +50,7 @@ public class EnemyInteraction : MonoBehaviour, InputSystem_Actions.IPlayerAction
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (_player != null)
-            FightManager.Instance.StartFight(FighterData, _player.FighterData);
+            FightManager.Instance.StartFight(FighterData, _player.FighterData, this);
     }
 
     public void OnMove(InputAction.CallbackContext context)

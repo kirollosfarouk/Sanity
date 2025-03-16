@@ -9,6 +9,7 @@ namespace Fight
     public class FightManager : MonoBehaviour
     {
         public static FightManager Instance { get; private set; }
+        public BossBarricade BossBarricade { get; set; }
 
         public MusicDefinition FightMusic;
         public MusicDefinition DefaultMusic;
@@ -24,6 +25,7 @@ namespace Fight
 
         [SerializeField] private FighterData _tempOpponentFighterData;
         [SerializeField] private FighterData _tempPlayerFighterData;
+        private EnemyInteraction _currentEnemyInteraction;
 
         void Awake()
         {
@@ -49,9 +51,10 @@ namespace Fight
             StartFight(_tempOpponentFighterData, _tempPlayerFighterData);
         }
 
-        public void StartFight(FighterData opponentFighterData, FighterData playerData)
+        public void StartFight(FighterData opponentFighterData, FighterData playerData, EnemyInteraction enemyInteraction = null)
         {
             _currentFight = new Fight();
+            _currentEnemyInteraction = enemyInteraction;
 
             Opponent opponent = new Opponent();
             opponent.Inialize(
@@ -90,7 +93,12 @@ namespace Fight
             {
                 gameObject.SetActive(false);
                 MusicPlayer.Instance.StartMusic(DefaultMusic);
+                if (BossBarricade != null)
+                    BossBarricade.EnemyDefeated();
                 _currentFight = null;
+                if (_currentEnemyInteraction != null)
+                    Destroy(_currentEnemyInteraction.gameObject);
+                _currentEnemyInteraction = null;
                 foreach (Transform child in BubblesParent.transform)
                 {
                     Destroy(child.gameObject);
