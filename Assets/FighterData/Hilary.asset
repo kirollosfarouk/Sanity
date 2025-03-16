@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2275c221ec2d4cb39b798b8f7b8b0307, type: 3}
   m_Name: Hilary
   m_EditorClassIdentifier: 
-  fighterPortrait: {fileID: -467019595612825077, guid: 17debc279dedc9244a93eec4ca0abe21, type: 3}
-  health: 100
-  slurs:
+  FighterPortrait: {fileID: -467019595612825077, guid: 17debc279dedc9244a93eec4ca0abe21, type: 3}
+  Health: 100
+  Slurs:
   - SlurText: baby
     Category: 0000000002000000
   - SlurText: ugly
@@ -23,3 +23,4 @@ MonoBehaviour:
     Category: 01000000
   - SlurText: dumb
     Category: 02000000
+  WeakPoints: 00000000

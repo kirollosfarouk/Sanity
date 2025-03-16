@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2275c221ec2d4cb39b798b8f7b8b0307, type: 3}
   m_Name: Elon
   m_EditorClassIdentifier: 
-  fighterPortrait: {fileID: -1452014987888458824, guid: bcf78c45936e56e4d896f257c7462c91, type: 3}
-  health: 100
-  slurs:
+  FighterPortrait: {fileID: -1452014987888458824, guid: bcf78c45936e56e4d896f257c7462c91, type: 3}
+  Health: 100
+  Slurs:
   - SlurText: baby
     Category: 0000000002000000
   - SlurText: ugly
@@ -23,3 +23,4 @@ MonoBehaviour:
     Category: 01000000
   - SlurText: dumb
     Category: 02000000
+  WeakPoints: 02000000

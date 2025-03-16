@@ -11,7 +11,7 @@ namespace UI
         public void Setup(FighterData.FighterData data)
         {
             healthSlider.value = 1;
-            opponentPortrait.sprite = data.fighterPortrait;
+            opponentPortrait.sprite = data.FighterPortrait;
         }
         public void UpdateHealth(float currentHealth, float maxHealth)
         {
