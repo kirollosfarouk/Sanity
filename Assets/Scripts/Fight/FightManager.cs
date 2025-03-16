@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Slurs;
 using UI;
 using UnityEngine;
@@ -38,8 +39,6 @@ namespace Fight
             {
                 Instance = this;
             }
-
-            SlursGenerator.LoadSlurs();
         }
 
         public void StartDebugFight()
@@ -88,6 +87,12 @@ namespace Fight
             else
             {
                 gameObject.SetActive(false);
+
+                if (_currentFight is { FightWinner: FightTurn.Player })
+                {
+                    ShowUnlockReward();
+                }
+                
                 MusicPlayer.Instance.StartMusic(DefaultMusic);
                 if (_currentFight != null)
                 {
@@ -106,6 +111,12 @@ namespace Fight
                     Destroy(child.gameObject);
                 }
             }
+        }
+
+        private void ShowUnlockReward()
+        {
+            var newSlurs = PlayerManager.Instance.GetNewRandomSlurs(3);
+            RewardSelectionView.Instance.Show(newSlurs);
         }
 
         public void WordSelected(Slur word)

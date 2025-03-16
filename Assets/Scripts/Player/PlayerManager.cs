@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Data;
 using Slurs;
 using UnityEngine;
@@ -11,8 +11,9 @@ namespace Player
         public static PlayerManager Instance { get; private set; }
 
         [SerializeField] private FighterData data;
-        
+
         public List<Slur> UnlockedSlurs = new();
+        public List<Slur> allSlurs = new();
 
         void Awake()
         {
@@ -28,7 +29,20 @@ namespace Player
 
         private void Start()
         {
-            UnlockedSlurs.AddRange(data.Slurs);
+            allSlurs.AddRange(data.Slurs);
+            UnlockedSlurs.AddRange(GetRandomSlurs(9));
+        }
+
+        private List<Slur> GetRandomSlurs(int count)
+        {
+            System.Random random = new();
+            return allSlurs.OrderBy(x => random.Next()).Take(count).ToList();
+        }
+
+        public List<Slur> GetNewRandomSlurs(int count)
+        {
+            System.Random random = new();
+            return allSlurs.Except(UnlockedSlurs).OrderBy(x => random.Next()).Take(count).ToList();
         }
 
         public void UnlockSlur(Slur slur)
