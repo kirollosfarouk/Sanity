@@ -57,11 +57,11 @@ namespace Fight
             currentTurn = currentTurn == FightTurn.Opponent ? FightTurn.Player : FightTurn.Opponent;
         }
 
-        private float CalculateDamage(List<Slurs.Slur> slurs, List<SlurCategory> weakPoints)
+        private float CalculateDamage(List<Slur> slurs, List<SlurCategory> weakPoints)
         {
             float damage = 0;
 
-            foreach (Slurs.Slur slur in slurs)
+            foreach (Slur slur in slurs)
             {
                 damage += 5;
 
