@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class BossBarricade : MonoBehaviour
 {
-    private int _enemiesDefeated;
     public int Threshold = 2;
 
-    private void Start()
+    private int _enemiesDefeated;
+    private bool _initialized;
+
+    private void Update()
     {
-        FightManager.Instance.BossBarricade = this;
+        if (!_initialized && FightManager.Instance != null)
+        {
+            FightManager.Instance.BossBarricade = this;
+            _initialized = true;
+        }
     }
 
     public void EnemyDefeated()
