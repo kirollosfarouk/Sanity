@@ -782,7 +782,7 @@ MonoBehaviour:
   OpponentView: {fileID: 1069562802}
   BubblesParent: {fileID: 147175658}
   slurBubble: {fileID: 6173929897905454095, guid: 512a77fbaedb4d640a78cfc307839511, type: 3}
-  _tempOpponentFighterData: {fileID: 11400000, guid: 2a8330e5c42c1194e944b5d5f03387bd, type: 2}
+  _tempOpponentFighterData: {fileID: 11400000, guid: f4490c763aec81a42b33e29eb0d98b8e, type: 2}
   _tempPlayerFighterData: {fileID: 11400000, guid: 1f5b076ffdbf80e41b745909d5198b3e, type: 2}
 --- !u!1 &1069562798
 GameObject:
