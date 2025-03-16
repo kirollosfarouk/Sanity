@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5033142829985649262}
   - component: {fileID: 2907382200656849187}
   - component: {fileID: 1289355289465176362}
+  - component: {fileID: 9213983893667974294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeed: 3
   Gravity: 10
-  FighterData: {fileID: 11400000, guid: 1f5b076ffdbf80e41b745909d5198b3e, type: 2}
+  FighterData: {fileID: 11400000, guid: c4910bd073ccda44f928725b2c951752, type: 2}
   FootstepSource: {fileID: 8598755582052334405}
 --- !u!95 &1289355289465176362
 Animator:
@@ -100,6 +101,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9213983893667974294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732809779411595971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b584cb63a74c49b095a7efb7819d8ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: c4910bd073ccda44f928725b2c951752, type: 2}
+  UnlockedSlurs: []
 --- !u!1 &2963170364889087183
 GameObject:
   m_ObjectHideFlags: 0

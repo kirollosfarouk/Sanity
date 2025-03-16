@@ -9,26 +9,10 @@ namespace UI
     {
         [SerializeField] private GameObject Content;
         [SerializeField] private SlurButton slurGameObject;
-        [SerializeField] private Slider healthSlider;
-
+        [SerializeField] private Slider healthSlider; 
+        
         private List<SlurButton> _slurButtons = new();
-
-        //private GameObject slur
-        private void Start()
-        {
-            //  InitializeSlurs();
-        }
-
-        private void InitializeSlurs()
-        {
-            foreach (var slur in SlursGenerator.UnlockedSlurs)
-            {
-                var button = Instantiate(slurGameObject, Content.transform);
-                button.Initialize(slur);
-                _slurButtons.Add(button);
-            }
-        }
-
+        
         public void InitializeView(List<Slur> slurs)
         {
             foreach (Transform child in Content.transform)
@@ -36,7 +20,7 @@ namespace UI
                 Destroy(child.gameObject);
             }
 
-            foreach (var slur in SlursGenerator.UnlockedSlurs)
+            foreach (var slur in slurs)
             {
                 var button = Instantiate(slurGameObject, Content.transform);
                 button.Initialize(slur);

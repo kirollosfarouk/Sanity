@@ -3,6 +3,7 @@ using Slurs;
 using UI;
 using UnityEngine;
 using Data;
+using Player;
 
 namespace Fight
 {
@@ -41,11 +42,6 @@ namespace Fight
             SlursGenerator.LoadSlurs();
         }
 
-        private void Start()
-        {
-            //StartFight(_tempOpponentFighterData, _tempPlayerFighterData);
-        }
-
         public void StartDebugFight()
         {
             StartFight(_tempOpponentFighterData, _tempPlayerFighterData);
@@ -64,12 +60,12 @@ namespace Fight
 
             PlayerFighter playerFighter = new PlayerFighter();
             playerFighter.Inialize(
-                SlursGenerator.UnlockedSlurs,
+                PlayerManager.Instance.UnlockedSlurs,
                 playerData.WeakPoints,
                 playerData.Health);
 
             OpponentView.Setup(opponentFighterData);
-            PlayerView.InitializeView(SlursGenerator.UnlockedSlurs);
+            PlayerView.InitializeView(PlayerManager.Instance.UnlockedSlurs);
 
             _currentFight.StartFight(opponent, playerFighter);
             gameObject.SetActive(true);
