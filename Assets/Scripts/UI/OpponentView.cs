@@ -1,7 +1,5 @@
-﻿using Fight;
-using UnityEngine;
-using UnityEngine.UIElements;
-using Image = UnityEngine.UI.Image;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -10,9 +8,10 @@ namespace UI
         [SerializeField] private Slider healthSlider;
         [SerializeField] private Image opponentPortrait;
 
-        public void Setup(FightManager fightManager)
+        public void Setup(FighterData.FighterData data)
         {
-            
+            healthSlider.value = 1;
+            opponentPortrait.sprite = data.fighterPortrait;
         }
         public void UpdateHealth(float currentHealth, float maxHealth)
         {
