@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Slurs
 {
+    [Serializable]
     public class Slur
     {
-        public string SlurText { get; }
-        public List<SlurCategory> Category { get; }
+        public string SlurText;
+
+        public List<SlurCategory> Category;
 
         public Slur(string slurText, List<SlurCategory> category)
         {

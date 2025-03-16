@@ -18,7 +18,7 @@ namespace Slurs
                     new Slur("Stinken", new List<SlurCategory> { SlurCategory.Physical }),
                     new Slur("ugly", new List<SlurCategory> { SlurCategory.Visual }),
                     new Slur("scarecrow", new List<SlurCategory> { SlurCategory.Visual }),
-                    new Slur("rolling", new List<SlurCategory> { SlurCategory.Visual }), 
+                    new Slur("drooling", new List<SlurCategory> { SlurCategory.Visual }), 
                     new Slur("dumb", new List<SlurCategory> { SlurCategory.Intellectual }),
                     new Slur("lying", new List<SlurCategory> { SlurCategory.Intellectual }),
                     new Slur("Super", new List<SlurCategory> { SlurCategory.Intellectual }),
