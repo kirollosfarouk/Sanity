@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Player;
 using Slurs;
 using UnityEngine;
 
@@ -46,7 +47,7 @@ public class RewardSelectionView : MonoBehaviour
 
     public void Select(Slur reward)
     {
+        PlayerManager.Instance.UnlockSlur(reward);
         gameObject.SetActive(false);
-        throw new NotImplementedException();
     }
 }

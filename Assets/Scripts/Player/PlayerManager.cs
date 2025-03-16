@@ -13,7 +13,8 @@ namespace Player
         [SerializeField] private FighterData data;
 
         public List<Slur> UnlockedSlurs = new();
-        private List<Slur> allSlurs = new();
+        public List<Slur> allSlurs = new();
+
         void Awake()
         {
             if (Instance != null && Instance != this)
@@ -37,6 +38,13 @@ namespace Player
             System.Random random = new();
             return allSlurs.OrderBy(x => random.Next()).Take(count).ToList();
         }
+
+        public List<Slur> GetNewRandomSlurs(int count)
+        {
+            System.Random random = new();
+            return allSlurs.Except(UnlockedSlurs).OrderBy(x => random.Next()).Take(count).ToList();
+        }
+
         public void UnlockSlur(Slur slur)
         {
             UnlockedSlurs.Add(slur);
