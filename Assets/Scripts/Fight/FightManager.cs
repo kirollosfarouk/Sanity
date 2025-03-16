@@ -46,7 +46,8 @@ namespace Fight
             StartFight(_tempOpponentFighterData, _tempPlayerFighterData);
         }
 
-        public void StartFight(FighterData opponentFighterData, FighterData playerData, EnemyInteraction enemyInteraction = null)
+        public void StartFight(FighterData opponentFighterData, FighterData playerData,
+            EnemyInteraction enemyInteraction = null)
         {
             _currentFight = new Fight();
             _currentEnemyInteraction = enemyInteraction;
@@ -92,7 +93,7 @@ namespace Fight
                 {
                     ShowUnlockReward();
                 }
-                
+
                 MusicPlayer.Instance.StartMusic(DefaultMusic);
                 if (_currentFight != null)
                 {
@@ -121,11 +122,28 @@ namespace Fight
 
         public void WordSelected(Slur word)
         {
+            if (_currentFight.PlayerFighter.selectedList.Count == 0)
+            {
+                clearBubbles();
+            }
+
             _currentFight.PlayerFighter.AddSlur(word);
+            Instantiate(slurBubble, BubblesParent).Initialize(word);
         }
 
 
         public void ShowSlurs(List<Slur> slurs)
+        {
+            clearBubbles();
+
+            foreach (var slur in slurs)
+            {
+                var obj = Instantiate(slurBubble, BubblesParent);
+                obj.Initialize(slur);
+            }
+        }
+
+        private void clearBubbles()
         {
             if (BubblesParent.childCount != 0)
             {
@@ -133,12 +151,6 @@ namespace Fight
                 {
                     Destroy(child.gameObject);
                 }
-            }
-
-            foreach (var slur in slurs)
-            {
-                var obj = Instantiate(slurBubble, BubblesParent);
-                obj.Initialize(slur);
             }
         }
     }
