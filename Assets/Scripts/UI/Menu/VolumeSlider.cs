@@ -19,6 +19,11 @@ public class VolumeSlider : MonoBehaviour
         _slider.onValueChanged.AddListener(SetVolume);
     }
 
+    public void OnEnable()
+    {
+        _slider.value = PlayerPrefs.GetFloat(PropertyName, 0f);
+    }
+
     private async void Initialize(float value)
     {
         await Task.Yield();
