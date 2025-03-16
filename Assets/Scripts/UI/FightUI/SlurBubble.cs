@@ -12,6 +12,6 @@ namespace UI
         {
             slurText.text = slur.ToString();
             slurText.color = CategoryColor.SlurColors[slur.Category[0]];
-        }in
+        }
     }
 }
