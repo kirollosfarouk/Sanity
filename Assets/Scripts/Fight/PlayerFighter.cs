@@ -40,8 +40,6 @@ namespace Fight
             return (CurrentHealth -= damage) <= 0;
         }
         
-        
-
         public List<SlurCategory> GetWeakPoints()
         {
             return weakPoints;

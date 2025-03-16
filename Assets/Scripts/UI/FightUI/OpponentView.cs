@@ -7,8 +7,8 @@ namespace UI
     {
         [SerializeField] private Slider healthSlider;
         [SerializeField] private Image opponentPortrait;
-
-        public void Setup(FighterData.FighterData data)
+        
+        public void Setup(Data.FighterData data)
         {
             healthSlider.value = 1;
             opponentPortrait.sprite = data.FighterPortrait;

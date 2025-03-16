@@ -8,39 +8,43 @@ namespace Fight
 {
     public class Fight
     {
-        public FightTurn currentTurn { get; private set; }
-        private Opponent _opponent;
-        public PlayerFighter _playerFighter;
+        public Opponent Opponent;
+        public PlayerFighter PlayerFighter;
         public bool FightEnded { get; private set; }
-        public void StartFight(Opponent opponent,PlayerFighter playerFighter)
+        public FightTurn FightWinner { get; private set; }
+        private FightTurn CurrentTurn { get; set; }
+
+        public void StartFight(Opponent opponent, PlayerFighter playerFighter)
         {
-            _opponent = opponent;
-            _playerFighter = playerFighter;
-            
-            currentTurn = FightTurn.Player;
+            Opponent = opponent;
+            PlayerFighter = playerFighter;
+
+            CurrentTurn = FightTurn.Player;
         }
 
         public void Tick()
         {
-            switch (currentTurn)
+            switch (CurrentTurn)
             {
                 case FightTurn.Opponent:
                 {
-                    var slursList = _opponent.Fight();
+                    var slursList = Opponent.Fight();
                     Debug.Log($" opponent attack {String.Join(",", slursList.Select(x => x.SlurText).ToList())}");
-                    var damage = CalculateDamage(slursList, _playerFighter.GetWeakPoints());
+                    var damage = CalculateDamage(slursList, PlayerFighter.GetWeakPoints());
                     Debug.Log($" opponent damage {damage}");
-                    bool playerDied = _playerFighter.TakeDamage(damage);
+                    bool playerDied = PlayerFighter.TakeDamage(damage);
                     FightEnded |= playerDied;
-                    Debug.Log($"player health {_playerFighter.CurrentHealth}");
+                    Debug.Log($"player health {PlayerFighter.CurrentHealth}");
+                    FightManager.Instance.ShowSlurs(slursList);
                     SwitchTurn();
                     break;
                 }
-                case FightTurn.Player when _playerFighter.ReadyToFight:
+                case FightTurn.Player when PlayerFighter.ReadyToFight:
                 {
-                    bool opponentDied = _opponent.TakeDamage(CalculateDamage(_playerFighter.Fight(), _opponent.GetWeakPoints()));
+                    bool opponentDied =
+                        Opponent.TakeDamage(CalculateDamage(PlayerFighter.Fight(), Opponent.GetWeakPoints()));
                     FightEnded |= opponentDied;
-                    Debug.Log($"opponent health {_opponent.CurrentHealth}");
+                    Debug.Log($"opponent health {Opponent.CurrentHealth}");
                     SwitchTurn();
                     break;
                 }
@@ -48,13 +52,17 @@ namespace Fight
 
             if (FightEnded)
             {
+                FightWinner = PlayerFighter.CurrentHealth > Opponent.CurrentHealth
+                    ? FightTurn.Player
+                    : FightTurn.Opponent;
+                
                 Debug.Log("Fight Ended");
             }
         }
 
         private void SwitchTurn()
         {
-            currentTurn = currentTurn == FightTurn.Opponent ? FightTurn.Player : FightTurn.Opponent;
+            CurrentTurn = CurrentTurn == FightTurn.Opponent ? FightTurn.Player : FightTurn.Opponent;
         }
 
         private float CalculateDamage(List<Slur> slurs, List<SlurCategory> weakPoints)
