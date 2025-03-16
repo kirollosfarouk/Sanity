@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   FighterPortrait: {fileID: 0}
-  Health: 0
+  Health: 100
   Slurs:
   - SlurText: Baby
     Category: 00000000
