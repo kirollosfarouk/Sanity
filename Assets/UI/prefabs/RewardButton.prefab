@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 555476013098341355, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 555476013098341355, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 8371255920354407406, guid: 28cbff068b8ec7b4786c2f230e3eba16, type: 3}
+    - target: {fileID: 555476013098341355, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 8958293690431816640, guid: 51c78b6b133c83d42a9105bf5105d4d2, type: 3}
+    - target: {fileID: 555476013098341355, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 8958293690431816640, guid: 51c78b6b133c83d42a9105bf5105d4d2, type: 3}
     - target: {fileID: 2983385720024986189, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
       propertyPath: m_Name
       value: RewardButton
@@ -92,6 +108,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4808829174855390068, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808829174855390068, guid: 4447c04635d5a3e4ab5340c23329172d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3051664190130691615, guid: bedd6216a44f8124fba0ce46ac15bc5d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -128,5 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f831f3c80ce0e44a8f48a3d998f7423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Reward:
+    SlurText: 
+    Category: 
   RewardSelectionView: {fileID: 0}
   Label: {fileID: 2650923099225655397}
