@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2275c221ec2d4cb39b798b8f7b8b0307, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  FighterPortrait: {fileID: 0}
+  Health: 0
+  Slurs:
+  - SlurText: Baby
+    Category: 00000000
+  - SlurText: ugly
+    Category: 03000000
+  - SlurText: dumb
+    Category: 0200000003000000
+  - SlurText: drooling
+    Category: 000000000200000003000000
+  - SlurText: Turd
+    Category: 0000000003000000
+  - SlurText: crazy
+    Category: 03000000
+  - SlurText: incompetent
+    Category: 0300000002000000
+  - SlurText: corrupt
+    Category: 0300000000000000
+  - SlurText: Karen
+    Category: 030000000000000002000000
+  - SlurText: Clown
+    Category: 030000000000000002000000
+  - SlurText: Techbro
+    Category: 0200000003000000
+  - SlurText: deceitful
+    Category: 03000000
+  - SlurText: shit-talking
+    Category: 0200000003000000
+  - SlurText: Fool
+    Category: 0200000000000000
+  - SlurText: Imbecile
+    Category: 0200000003000000
+  - SlurText: ignorant
+    Category: 0200000003000000
+  - SlurText: dull
+    Category: 020000000300000001000000
+  - SlurText: braindead
+    Category: 020000000300000001000000
+  - SlurText: Man-Child
+    Category: 020000000100000000000000
+  - SlurText: Parasite
+    Category: 03000000
+  - SlurText: tweeting
+    Category: 0200000003000000
+  - SlurText: Orange
+    Category: 0100000000000000
+  - SlurText: lyin'
+    Category: 010000000200000003000000
+  - SlurText: sweaty
+    Category: 0000000003000000
+  WeakPoints: 00000000
