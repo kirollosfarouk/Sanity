@@ -10,9 +10,11 @@ namespace UI
     {
         [SerializeField] Button _button;
         [SerializeField] TextMeshProUGUI _text;
-        
+
+        public AudioClip AudioClip;
+
         private Slur _slur;
-        
+
         public void Initialize(Slur intialSlur)
         {
             _slur = intialSlur;
@@ -23,7 +25,8 @@ namespace UI
 
         private void Call()
         {
-            FightManager.Instance.WordSelected( _slur);
+            FightManager.Instance.WordSelected(_slur);
+            SFXPlayer.Instance.PlaySFX(AudioClip);
         }
     }
 }
