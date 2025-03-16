@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     public float WalkSpeed = 6f;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     private bool _canMove = true;
     private float _currentSpeed = 0f;
+    private Animator _animator;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -45,6 +48,8 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
 
         _characterController.Move(_moveDirection * Time.deltaTime);
+        _animator.SetFloat("Speed", _characterController.velocity.magnitude);
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)
