@@ -10,7 +10,7 @@ namespace UI
 
         public void Initialize(Slur slur)
         {
-            slurText.text = slur.ToString();
+            slurText.text = slur.SlurText;
             slurText.color = CategoryColor.SlurColors[slur.Category[0]];
         }
     }
