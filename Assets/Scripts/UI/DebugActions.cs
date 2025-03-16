@@ -8,5 +8,9 @@ public class DebugActions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F2))
             RewardSelectionView.Instance.Show(new List<Slur> { new("Test1", new List<SlurCategory>()), new("Test2", new List<SlurCategory>()), new("Test3", new List<SlurCategory>()) });
+        if (Input.GetKeyDown(KeyCode.F3))
+            MenuStateHandler.Instance.Won();
+        if (Input.GetKeyDown(KeyCode.F4))
+            MenuStateHandler.Instance.Lost();
     }
 }

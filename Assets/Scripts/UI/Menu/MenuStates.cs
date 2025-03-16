@@ -8,7 +8,8 @@
         Ingame,
         LoadIngame,
         PauseMenu,
-        GameOver,
+        GameWon,
+        GameLost,
         Exit
     }
 
@@ -17,7 +18,8 @@
         Initialized,
         StartGame,
         Pause,
-        GameOver,
+        GameWon,
+        GameLost,
         Exit
     }
 }
