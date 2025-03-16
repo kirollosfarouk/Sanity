@@ -15,7 +15,7 @@ MonoBehaviour:
   FighterPortrait: {fileID: 6653824423615467181, guid: c6bc6b501e4dd7e41b484e483e1f4ca9, type: 3}
   Health: 100
   Slurs:
-  - SlurText: baby
+  - SlurText: Baby
     Category: 0000000002000000
   - SlurText: ugly
     Category: 01000000
@@ -23,4 +23,66 @@ MonoBehaviour:
     Category: 01000000
   - SlurText: dumb
     Category: 02000000
-  WeakPoints: 0100000000000000
+  - SlurText: Three-inch fool
+    Category: 0000000002000000
+  - SlurText: drooling
+    Category: 0100000002000000
+  - SlurText: stuttering
+    Category: 0200000003000000
+  - SlurText: mumbling
+    Category: 0100000003000000
+  - SlurText: dirty
+    Category: 03000000
+  - SlurText: Worm
+    Category: 00000000
+  - SlurText: Orange
+    Category: 00000000
+  - SlurText: Jackass
+    Category: 00000000
+  - SlurText: hairless
+    Category: 00000000
+  - SlurText: vile
+    Category: 01000000
+  - SlurText: orange
+    Category: 01000000
+  - SlurText: shameful
+    Category: 0100000000000000
+  - SlurText: sleepy
+    Category: 0100000000000000
+  - SlurText: lyin'
+    Category: 0100000002000000
+  - SlurText: Liar
+    Category: 0100000002000000
+  - SlurText: irredeemable
+    Category: 03000000
+  - SlurText: despicable
+    Category: 00000000
+  - SlurText: Baboon-Brain
+    Category: 0000000001000000
+  - SlurText: deranged
+    Category: 03000000
+  - SlurText: goofy
+    Category: 00000000
+  - SlurText: sweaty
+    Category: 01000000
+  - SlurText: Fake_News
+    Category: 03000000
+  - SlurText: Commander-In-Thief
+    Category: 03000000
+  - SlurText: MAGA Theresa
+    Category: 0100000000000000
+  - SlurText: Founding Farter
+    Category: 01000000
+  - SlurText: Dopey McGropey
+    Category: 00000000
+  - SlurText: Yabba Dabba Doofus
+    Category: 0000000000000000
+  - SlurText: Clown
+    Category: 0200000000000000
+  - SlurText: Stable McGenius
+    Category: 02000000
+  - SlurText: reckless
+    Category: 03000000
+  - SlurText: self-absorbed
+    Category: 03000000
+  WeakPoints: 01000000

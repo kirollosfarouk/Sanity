@@ -15,12 +15,56 @@ MonoBehaviour:
   FighterPortrait: {fileID: -467019595612825077, guid: 17debc279dedc9244a93eec4ca0abe21, type: 3}
   Health: 100
   Slurs:
-  - SlurText: baby
+  - SlurText: Baby
     Category: 0000000002000000
   - SlurText: ugly
-    Category: 01000000
-  - SlurText: rolling
-    Category: 01000000
+    Category: 0000000001000000
+  - SlurText: Butt-Head
+    Category: 00000000
   - SlurText: dumb
-    Category: 02000000
+    Category: 0200000003000000
+  - SlurText: intolerable
+    Category: 0300000000000000
+  - SlurText: Hag
+    Category: 0000000001000000
+  - SlurText: lying
+    Category: 0100000002000000
+  - SlurText: snaky
+    Category: 0000000002000000
+  - SlurText: villainous
+    Category: 03000000
+  - SlurText: Felon
+    Category: 03000000
+  - SlurText: Snake
+    Category: 00000000
+  - SlurText: viperish
+    Category: 00000000
+  - SlurText: crazy
+    Category: 0000000002000000
+  - SlurText: crooked
+    Category: 00000000
+  - SlurText: phony
+    Category: 03000000
+  - SlurText: Sellout
+    Category: 03000000
+  - SlurText: evasive
+    Category: 03000000
+  - SlurText: scheming
+    Category: 00000000
+  - SlurText: cold
+    Category: 00000000
+  - SlurText: corrupt
+    Category: 0000000003000000
+  - SlurText: two-faced
+    Category: 00000000
+  - SlurText: deceitful
+    Category: 03000000
+  - SlurText: grinning
+    Category: 00000000
+  - SlurText: incompetent
+    Category: 0200000003000000
+  - SlurText: Karen
+    Category: 020000000300000000000000
+  - SlurText: Clown
+    Category: 020000000300000000000000
   WeakPoints: 00000000

@@ -15,12 +15,64 @@ MonoBehaviour:
   FighterPortrait: {fileID: -1452014987888458824, guid: bcf78c45936e56e4d896f257c7462c91, type: 3}
   Health: 100
   Slurs:
-  - SlurText: baby
+  - SlurText: Baby
     Category: 0000000002000000
   - SlurText: ugly
     Category: 01000000
-  - SlurText: rolling
-    Category: 01000000
   - SlurText: dumb
     Category: 02000000
+  - SlurText: stupid
+    Category: 02000000
+  - SlurText: idiot
+    Category: 02000000
+  - SlurText: Turd
+    Category: 0300000000000000
+  - SlurText: shit-talking
+    Category: 02000000
+  - SlurText: Fool
+    Category: 02000000
+  - SlurText: Imbecile
+    Category: 02000000
+  - SlurText: ignorant
+    Category: 02000000
+  - SlurText: dull
+    Category: 02000000
+  - SlurText: braindead
+    Category: 02000000
+  - SlurText: dimwitted
+    Category: 02000000
+  - SlurText: crazy
+    Category: 0200000003000000
+  - SlurText: useless
+    Category: 03000000
+  - SlurText: absurd
+    Category: 0200000003000000
+  - SlurText: Alien
+    Category: 0300000000000000
+  - SlurText: brain-fried
+    Category: 0200000001000000
+  - SlurText: low-IQ
+    Category: 02000000
+  - SlurText: Clown
+    Category: 030000000000000002000000
+  - SlurText: Man-Child
+    Category: 030000000200000000000000
+  - SlurText: Techbro
+    Category: 02000000
+  - SlurText: Parasite
+    Category: 03000000
+  - SlurText: tweeting
+    Category: 0100000003000000
+  - SlurText: delusional
+    Category: 0100000003000000
+  - SlurText: Flop
+    Category: 010000000300000000000000
+  - SlurText: overpromising
+    Category: 0100000003000000
+  - SlurText: incompetent
+    Category: 02000000
+  - SlurText: Sellout
+    Category: 03000000
+  - SlurText: corrupt
+    Category: 0300000000000000
   WeakPoints: 02000000
