@@ -1,3 +1,4 @@
+using Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     public float WalkSpeed = 6f;
     public float Gravity = 10f;
+    public FighterData FighterData;
     public AudioSource FootstepSource;
 
     private Vector3 _moveDirection = Vector3.zero;
@@ -59,23 +61,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-    }
-
     public void OnInteract(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnPrevious(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnNext(InputAction.CallbackContext context)
     {
     }
 }

@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeed: 3
   Gravity: 10
+  FighterData: {fileID: 11400000, guid: 1f5b076ffdbf80e41b745909d5198b3e, type: 2}
   FootstepSource: {fileID: 8598755582052334405}
 --- !u!95 &1289355289465176362
 Animator:
@@ -381,7 +382,7 @@ Camera:
     height: 1
   near clip plane: 0.5
   far clip plane: 1000
-  field of view: 48
+  field of view: 30
   orthographic: 0
   orthographic size: 1.65
   m_Depth: -1
