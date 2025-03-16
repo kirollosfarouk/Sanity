@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemy2_hillary_duel_0: -467019595612825077
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
