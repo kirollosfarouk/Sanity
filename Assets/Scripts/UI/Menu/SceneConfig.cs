@@ -14,6 +14,7 @@ public class SceneConfig : ScriptableObject
     public SceneReference MenuScene;
     public SceneReference GameScene;
     public SceneReference EmptyScene;
+    public SceneReference FightScene;
 
     public static SceneConfig Instance
     {

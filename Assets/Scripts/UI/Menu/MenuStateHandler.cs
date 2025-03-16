@@ -68,7 +68,7 @@ public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
         GameWonRoot.SetActive(false);
         GameLostRoot.SetActive(false);
 
-        var initialState = MenuStates.Ingame;
+        var initialState = MenuStates.LoadIngame;
         if (SceneManager.GetActiveScene().name == SceneConfig.Instance.MenuScene.Name)
             initialState = MenuStates.StartUp;
         _stateMachine = new StateMachine<MenuStates, MenuTriggers>();
@@ -180,11 +180,24 @@ public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
     {
         Debug.Log("LoadIngame...");
         LoadingRoot.SetActive(true);
-        var loading = SceneManager.LoadSceneAsync(_config.GameScene.BuildIndex);
-        while (!loading.isDone)
+        AsyncOperation loading;
+
+        if (SceneManager.GetActiveScene().buildIndex != _config.GameScene.BuildIndex)
         {
-            yield return null;
+            var loadAdditive = SceneManager.GetActiveScene().buildIndex == _config.FightScene.BuildIndex;
+            loading = SceneManager.LoadSceneAsync(_config.GameScene.BuildIndex, loadAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
+            while (!loading.isDone)
+                yield return null;
         }
+
+        if (SceneManager.GetActiveScene().buildIndex != _config.FightScene.BuildIndex)
+        {
+            loading = SceneManager.LoadSceneAsync(_config.FightScene.BuildIndex, LoadSceneMode.Additive);
+            while (!loading.isDone)
+                yield return null;
+        }
+
+        SceneManager.SetActiveScene(_config.GameScene.LoadedScene);
 
         LoadingRoot.SetActive(false);
         Debug.Log("LoadIngame done");

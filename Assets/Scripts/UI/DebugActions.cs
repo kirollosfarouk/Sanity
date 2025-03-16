@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fight;
 using Slurs;
 using UnityEngine;
 
@@ -12,5 +13,7 @@ public class DebugActions : MonoBehaviour
             MenuStateHandler.Instance.Won();
         if (Input.GetKeyDown(KeyCode.F4))
             MenuStateHandler.Instance.Lost();
+        if (Input.GetKeyDown(KeyCode.F5))
+            FightManager.Instance?.StartDebugFight();
     }
 }

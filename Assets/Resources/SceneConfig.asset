@@ -21,3 +21,6 @@ MonoBehaviour:
   EmptyScene:
     asset: {fileID: 102900000, guid: d3e09a97733add148a3f73ea046e1832, type: 3}
     guid: d3e09a97733add148a3f73ea046e1832
+  FightScene:
+    asset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
+    guid: 8c9cfa26abfee488c85f1582747f6a02

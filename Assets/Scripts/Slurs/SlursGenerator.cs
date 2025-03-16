@@ -6,11 +6,13 @@ namespace Slurs
 {
     public static class SlursGenerator
     {
-        public static List<Slur> AllSlurs = new ();
+        public static List<Slur> AllSlurs = new();
         public static List<Slur> UnlockedSlurs = new();
 
         public static void LoadSlurs()
         {
+            if (AllSlurs.Any())
+                return;
             AllSlurs.AddRange(new[]
                 {
                     new Slur("weak", new List<SlurCategory> { SlurCategory.Physical }),
@@ -18,7 +20,7 @@ namespace Slurs
                     new Slur("Stinken", new List<SlurCategory> { SlurCategory.Physical }),
                     new Slur("ugly", new List<SlurCategory> { SlurCategory.Visual }),
                     new Slur("scarecrow", new List<SlurCategory> { SlurCategory.Visual }),
-                    new Slur("drooling", new List<SlurCategory> { SlurCategory.Visual }), 
+                    new Slur("drooling", new List<SlurCategory> { SlurCategory.Visual }),
                     new Slur("dumb", new List<SlurCategory> { SlurCategory.Intellectual }),
                     new Slur("lying", new List<SlurCategory> { SlurCategory.Intellectual }),
                     new Slur("Super", new List<SlurCategory> { SlurCategory.Intellectual }),

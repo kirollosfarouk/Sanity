@@ -10,14 +10,18 @@ namespace Fight
     {
         public static FightManager Instance { get; private set; }
 
+        public MusicDefinition FightMusic;
+        public MusicDefinition DefaultMusic;
+
+
         [SerializeField] private PlayerView PlayerView;
         [SerializeField] private OpponentView OpponentView;
         [SerializeField] private Transform BubblesParent;
         [SerializeField] private SlurBubble slurBubble;
-        
+
         private Fight _currentFight;
-        
-        
+
+
         [SerializeField] private FighterData _tempOpponentFighterData;
         [SerializeField] private FighterData _tempPlayerFighterData;
 
@@ -37,10 +41,15 @@ namespace Fight
 
         private void Start()
         {
+            //StartFight(_tempOpponentFighterData, _tempPlayerFighterData);
+        }
+
+        public void StartDebugFight()
+        {
             StartFight(_tempOpponentFighterData, _tempPlayerFighterData);
         }
 
-        private void StartFight(FighterData opponentFighterData, FighterData playerData)
+        public void StartFight(FighterData opponentFighterData, FighterData playerData)
         {
             _currentFight = new Fight();
 
@@ -55,16 +64,19 @@ namespace Fight
                 SlursGenerator.UnlockedSlurs,
                 playerData.WeakPoints,
                 playerData.Health);
-            
+
             OpponentView.Setup(opponentFighterData);
-            PlayerView.InitalizeView(SlursGenerator.UnlockedSlurs);
-            
+            PlayerView.InitializeView(SlursGenerator.UnlockedSlurs);
+
             _currentFight.StartFight(opponent, playerFighter);
+            gameObject.SetActive(true);
+            MusicPlayer.Instance.StartMusic(FightMusic);
         }
+
 
         void Update()
         {
-            if (!_currentFight.FightEnded)
+            if (_currentFight != null && !_currentFight.FightEnded)
             {
                 _currentFight.Tick();
 
@@ -74,6 +86,16 @@ namespace Fight
                 OpponentView.UpdateHealth(_currentFight.Opponent.CurrentHealth,
                     _currentFight.Opponent.StartingHealth);
             }
+            else
+            {
+                gameObject.SetActive(false);
+                MusicPlayer.Instance.StartMusic(DefaultMusic);
+                _currentFight = null;
+                foreach (Transform child in BubblesParent.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
         }
 
         public void WordSelected(Slur word)
@@ -81,7 +103,7 @@ namespace Fight
             _currentFight.PlayerFighter.AddSlur(word);
         }
 
-      
+
         public void ShowSlurs(List<Slur> slurs)
         {
             if (BubblesParent.childCount != 0)
@@ -91,6 +113,7 @@ namespace Fight
                     Destroy(child.gameObject);
                 }
             }
+
             foreach (var slur in slurs)
             {
                 var obj = Instantiate(slurBubble, BubblesParent);
