@@ -4,7 +4,9 @@
     {
         StartUp,
         MainMenu,
+        LoadMainMenu,
         Ingame,
+        LoadIngame,
         PauseMenu,
         GameOver,
         Exit

@@ -1,10 +1,11 @@
-using System.Threading.Tasks;
-using Stateless;
+using System.Collections;
 using UI.Menu;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityHFSM;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -52,46 +53,57 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
         var initialState = MenuStates.Ingame;
         if (SceneManager.GetActiveScene().name == SceneConfig.Instance.MenuScene.Name)
             initialState = MenuStates.StartUp;
-        _stateMachine = new StateMachine<MenuStates, MenuTriggers>(initialState);
+        _stateMachine = new StateMachine<MenuStates, MenuTriggers>();
 
-        _stateMachine.Configure(MenuStates.StartUp)
-            .Permit(MenuTriggers.Initialized, MenuStates.MainMenu);
+        _stateMachine.AddState(MenuStates.StartUp);
+        _stateMachine.AddTransition(MenuStates.StartUp, MenuStates.LoadMainMenu);
 
-        _stateMachine.Configure(MenuStates.MainMenu)
-            .Permit(MenuTriggers.StartGame, MenuStates.Ingame)
-            .Permit(MenuTriggers.Exit, MenuStates.Exit)
-            .OnEntry(() => MainMenuRoot?.SetActive(true))
-            .OnExit(() => MainMenuRoot?.SetActive(false))
-            .OnEntryAsync(LoadEmptyScene);
+        _stateMachine.AddState(MenuStates.LoadMainMenu, new CoState<MenuStates, MenuTriggers>(this, LoadEmptyScene, needsExitTime: true, loop: false));
+        _stateMachine.AddTransition(MenuStates.LoadMainMenu, MenuStates.MainMenu);
 
-        _stateMachine.Configure(MenuStates.Exit)
-            .OnEntry(Quit);
+        _stateMachine.AddState(MenuStates.MainMenu, onEnter: _ => MainMenuRoot?.SetActive(true), onExit: _ => MainMenuRoot?.SetActive(false));
+        _stateMachine.AddTriggerTransition(MenuTriggers.StartGame, MenuStates.MainMenu, MenuStates.LoadIngame);
+        _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.MainMenu, MenuStates.Exit);
 
-        _stateMachine.Configure(MenuStates.Ingame)
-            .Permit(MenuTriggers.Pause, MenuStates.PauseMenu)
-            .Permit(MenuTriggers.GameOver, MenuStates.GameOver)
-            .OnEntryFromAsync(MenuTriggers.StartGame, LoadIngame);
+        _stateMachine.AddState(MenuStates.LoadIngame, new CoState<MenuStates, MenuTriggers>(this, LoadIngame, needsExitTime: true, loop: false));
+        _stateMachine.AddTransition(MenuStates.LoadIngame, MenuStates.Ingame);
 
-        _stateMachine.Configure(MenuStates.PauseMenu)
-            .Permit(MenuTriggers.Pause, MenuStates.Ingame)
-            .Permit(MenuTriggers.Exit, MenuStates.MainMenu)
-            .OnEntry(PauseTransition)
-            .OnExit(ResumeTransition);
+        _stateMachine.AddState(MenuStates.Ingame);
+        _stateMachine.AddTriggerTransition(MenuTriggers.Pause, MenuStates.Ingame, MenuStates.PauseMenu);
+        _stateMachine.AddTriggerTransition(MenuTriggers.GameOver, MenuStates.Ingame, MenuStates.GameOver);
 
-        _stateMachine.Configure(MenuStates.GameOver)
-            .Permit(MenuTriggers.Exit, MenuStates.MainMenu);
+        _stateMachine.AddState(MenuStates.Exit, onEnter: _ => Quit());
 
-        _stateMachine.FireAsync(MenuTriggers.Initialized);
+        _stateMachine.AddState(MenuStates.PauseMenu, onEnter: PauseTransition, onExit: ResumeTransition);
+        _stateMachine.AddTriggerTransition(MenuTriggers.Pause, MenuStates.PauseMenu, MenuStates.Ingame);
+        _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.PauseMenu, MenuStates.LoadMainMenu);
+
+        _stateMachine.AddState(MenuStates.GameOver);
+        _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.GameOver, MenuStates.LoadMainMenu);
+
+        _stateMachine.SetStartState(initialState);
+        _stateMachine.Init();
+    }
+
+    public void Update()
+    {
+        _stateMachine.OnLogic();
     }
 
     public void StartGame()
     {
-        _stateMachine.FireAsync(MenuTriggers.StartGame);
+        Debug.Log("StartGame");
+        _stateMachine.Trigger(MenuTriggers.StartGame);
     }
 
     public void Exit()
     {
-        _stateMachine.FireAsync(MenuTriggers.Exit);
+        _stateMachine.Trigger(MenuTriggers.Exit);
+    }
+
+    public void TogglePause()
+    {
+        _stateMachine.Trigger(MenuTriggers.Pause);
     }
 
     private void Quit()
@@ -103,19 +115,33 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
 #endif
     }
 
-    private async Task LoadIngame()
+    private IEnumerator LoadEmptyScene()
     {
         LoadingRoot.SetActive(true);
-        await SceneManager.LoadSceneAsync(_config.GameScene.BuildIndex);
-        LoadingRoot.SetActive(false);
-    }
+        var loading = SceneManager.LoadSceneAsync(_config.EmptyScene.BuildIndex);
+        while (!loading.isDone)
+        {
+            yield return null;
+        }
 
-    private async Task LoadEmptyScene()
-    {
-        LoadingRoot.SetActive(true);
-        await SceneManager.LoadSceneAsync(_config.EmptyScene.BuildIndex);
         LoadingRoot.SetActive(false);
         MusicPlayer.Instance.StartMusic(MenuMusic);
+        _stateMachine.StateCanExit();
+    }
+
+    private IEnumerator LoadIngame()
+    {
+        Debug.Log("LoadIngame...");
+        LoadingRoot.SetActive(true);
+        var loading = SceneManager.LoadSceneAsync(_config.GameScene.BuildIndex);
+        while (!loading.isDone)
+        {
+            yield return null;
+        }
+
+        LoadingRoot.SetActive(false);
+        Debug.Log("LoadIngame done");
+        _stateMachine.StateCanExit();
     }
 
     public void OnPause(InputAction.CallbackContext context)
@@ -124,19 +150,14 @@ public class MainMenuView : MonoBehaviour, InputSystem_Actions.IMenuActions
             TogglePause();
     }
 
-    public void TogglePause()
-    {
-        _stateMachine.FireAsync(MenuTriggers.Pause);
-    }
-
-    private void PauseTransition()
+    private void PauseTransition(State<MenuStates, MenuTriggers> state)
     {
         _input.Player.Disable();
         Time.timeScale = 0;
         IngameMenuRoot?.SetActive(true);
     }
 
-    private void ResumeTransition()
+    private void ResumeTransition(State<MenuStates, MenuTriggers> state)
     {
         IngameMenuRoot?.SetActive(false);
         Time.timeScale = 1;
