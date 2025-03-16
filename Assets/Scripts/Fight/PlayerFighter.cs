@@ -12,7 +12,7 @@ namespace Fight
 
         private List<Slur> availableSlurs = new();
         private List<SlurCategory> weakPoints = new();
-        private List<Slur> selectedList = new();
+        public List<Slur> selectedList = new();
 
         public void Inialize(List<Slur> intialSlurs, List<SlurCategory> oponentWeakPoints, float maxHealth)
         {
