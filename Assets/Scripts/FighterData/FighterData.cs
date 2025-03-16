@@ -3,7 +3,7 @@ using Slurs;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace FighterData
+namespace Data
 {
     [CreateAssetMenu(fileName = "Fighter Data", menuName = "FighterData", order = 1)]
     public class FighterData : ScriptableObject

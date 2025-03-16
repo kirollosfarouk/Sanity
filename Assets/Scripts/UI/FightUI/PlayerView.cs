@@ -20,8 +20,6 @@ namespace UI
 
         private void InitializeSlurs()
         {
-            SlursGenerator.LoadSlurs();
-            
             foreach (var slur in SlursGenerator.UnlockedSlurs)  
             {
                var button = Instantiate(slurGameObject,Content.transform);
