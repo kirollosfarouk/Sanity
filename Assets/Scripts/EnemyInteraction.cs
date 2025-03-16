@@ -11,6 +11,7 @@ public class EnemyInteraction : MonoBehaviour, InputSystem_Actions.IPlayerAction
     public FighterData FighterData;
     public GameObject Prompt;
     public TMP_Text PromptText;
+    public bool IsBoss = false;
 
     private InputSystem_Actions _input;
 
@@ -22,6 +23,13 @@ public class EnemyInteraction : MonoBehaviour, InputSystem_Actions.IPlayerAction
         Prompt.SetActive(false);
         _input = new InputSystem_Actions();
         _input.Player.AddCallbacks(this);
+    }
+
+    private void OnDestroy()
+    {
+        if (IsBoss)
+            MenuStateHandler.Instance.Won();
+        DisableInteraction();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,6 +50,11 @@ public class EnemyInteraction : MonoBehaviour, InputSystem_Actions.IPlayerAction
         var player = other.GetComponent<PlayerMovement>();
         if (player == null)
             return;
+        DisableInteraction();
+    }
+
+    private void DisableInteraction()
+    {
         _input.Player.Disable();
         _player = null;
         Prompt.SetActive(false);

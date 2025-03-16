@@ -9148,6 +9148,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1923628177622619421, guid: 9005c2addb70c2a44881589a6f2fb8c6, type: 3}
+      propertyPath: IsBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923628177622619421, guid: 9005c2addb70c2a44881589a6f2fb8c6, type: 3}
       propertyPath: FighterData
       value: 
       objectReference: {fileID: 11400000, guid: f4490c763aec81a42b33e29eb0d98b8e, type: 2}
@@ -9169,7 +9173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4841642827424051008, guid: 9005c2addb70c2a44881589a6f2fb8c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.498
+      value: 0.337
       objectReference: {fileID: 0}
     - target: {fileID: 4841642827424051008, guid: 9005c2addb70c2a44881589a6f2fb8c6, type: 3}
       propertyPath: m_LocalPosition.z

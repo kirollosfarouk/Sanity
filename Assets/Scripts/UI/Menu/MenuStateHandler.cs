@@ -213,24 +213,24 @@ public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
     private void DisablePlayerInput()
     {
         _input.Player.Disable();
+        Time.timeScale = 0;
     }
 
     private void EnablePlayerInput()
     {
         _input.Player.Enable();
+        Time.timeScale = 1;
     }
 
     private void PauseTransition(State<MenuStates, MenuTriggers> state)
     {
         DisablePlayerInput();
-        Time.timeScale = 0;
         IngameMenuRoot?.SetActive(true);
     }
 
     private void ResumeTransition(State<MenuStates, MenuTriggers> state)
     {
         IngameMenuRoot?.SetActive(false);
-        Time.timeScale = 1;
         EnablePlayerInput();
     }
 }

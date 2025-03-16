@@ -89,12 +89,18 @@ namespace Fight
             {
                 gameObject.SetActive(false);
                 MusicPlayer.Instance.StartMusic(DefaultMusic);
-                if (BossBarricade != null)
-                    BossBarricade.EnemyDefeated();
-                _currentFight = null;
-                if (_currentEnemyInteraction != null)
-                    Destroy(_currentEnemyInteraction.gameObject);
-                _currentEnemyInteraction = null;
+                if (_currentFight != null)
+                {
+                    if (BossBarricade != null)
+                        BossBarricade.EnemyDefeated();
+                    if (_currentFight.FightWinner != FightTurn.Player)
+                        MenuStateHandler.Instance.Lost();
+                    _currentFight = null;
+                    if (_currentEnemyInteraction != null)
+                        Destroy(_currentEnemyInteraction.gameObject);
+                    _currentEnemyInteraction = null;
+                }
+
                 foreach (Transform child in BubblesParent.transform)
                 {
                     Destroy(child.gameObject);
