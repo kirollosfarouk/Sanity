@@ -97,9 +97,25 @@ public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
         _stateMachine.AddTriggerTransition(MenuTriggers.Pause, MenuStates.PauseMenu, MenuStates.Ingame);
         _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.PauseMenu, MenuStates.LoadMainMenu);
 
-        _stateMachine.AddState(MenuStates.GameWon, onEnter: _ => GameWonRoot?.SetActive(true), onExit: _ => GameWonRoot?.SetActive(false));
+        _stateMachine.AddState(MenuStates.GameWon, onEnter: _ =>
+        {
+            GameWonRoot?.SetActive(true);
+            DisablePlayerInput();
+        }, onExit: _ =>
+        {
+            GameWonRoot?.SetActive(false);
+            EnablePlayerInput();
+        });
         _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.GameWon, MenuStates.LoadMainMenu);
-        _stateMachine.AddState(MenuStates.GameLost, onEnter: _ => GameLostRoot?.SetActive(true), onExit: _ => GameLostRoot?.SetActive(false));
+        _stateMachine.AddState(MenuStates.GameLost, onEnter: _ =>
+        {
+            GameLostRoot?.SetActive(true);
+            DisablePlayerInput();
+        }, onExit: _ =>
+        {
+            GameLostRoot?.SetActive(false);
+            EnablePlayerInput();
+        });
         _stateMachine.AddTriggerTransition(MenuTriggers.Exit, MenuStates.GameLost, MenuStates.LoadMainMenu);
 
         _stateMachine.SetStartState(initialState);
@@ -181,9 +197,19 @@ public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
             TogglePause();
     }
 
-    private void PauseTransition(State<MenuStates, MenuTriggers> state)
+    private void DisablePlayerInput()
     {
         _input.Player.Disable();
+    }
+
+    private void EnablePlayerInput()
+    {
+        _input.Player.Enable();
+    }
+
+    private void PauseTransition(State<MenuStates, MenuTriggers> state)
+    {
+        DisablePlayerInput();
         Time.timeScale = 0;
         IngameMenuRoot?.SetActive(true);
     }
@@ -192,6 +218,6 @@ public class MenuStateHandler : MonoBehaviour, InputSystem_Actions.IMenuActions
     {
         IngameMenuRoot?.SetActive(false);
         Time.timeScale = 1;
-        _input.Player.Enable();
+        EnablePlayerInput();
     }
 }
