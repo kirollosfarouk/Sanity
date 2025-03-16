@@ -353,8 +353,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: E
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 25bac6c2e8f89f146a62013cb1c07bfa, type: 2}
+  m_sharedMaterial: {fileID: -645465553359857447, guid: 25bac6c2e8f89f146a62013cb1c07bfa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 59.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -481,6 +481,7 @@ MonoBehaviour:
   FighterData: {fileID: 0}
   Prompt: {fileID: 2937039426403152910}
   PromptText: {fileID: 7620636689255333874}
+  IsBoss: 0
 --- !u!135 &7695171410731213832
 SphereCollider:
   m_ObjectHideFlags: 0
