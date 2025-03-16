@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     public float WalkSpeed = 6f;
     public float Gravity = 10f;
+    public AudioSource FootstepSource;
 
     private Vector3 _moveDirection = Vector3.zero;
     private CharacterController _characterController;
@@ -48,8 +49,10 @@ public class PlayerMovement : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
 
         _characterController.Move(_moveDirection * Time.deltaTime);
-        _animator.SetFloat("Speed", _characterController.velocity.magnitude);
-        
+
+        var velocity = _characterController.velocity.magnitude;
+        _animator.SetFloat("Speed", velocity);
+        FootstepSource?.gameObject.SetActive(velocity > 0);
     }
 
     public void OnMove(InputAction.CallbackContext context)

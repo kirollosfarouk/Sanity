@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1d242d192e7e24a9569cbc55f38f0f, type: 3}
   m_Name: Battle
   m_EditorClassIdentifier: 
-  Clip: {fileID: 8300000, guid: 3df8a3666edbd0a43b75d2679cc4386b, type: 3}
+  Clip: {fileID: 8300000, guid: e7d78841f0e78324693e1edd3ef02ecb, type: 3}
   LoopStartTime: 66.532
   LoopEndTime: 88.989
