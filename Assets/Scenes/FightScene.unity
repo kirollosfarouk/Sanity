@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Content: {fileID: 237708825}
   slurGameObject: {fileID: 7456061739132343979, guid: 86ba81300ee374b488b531506503dcb2, type: 3}
+  healthSlider: {fileID: 19583632}
 --- !u!1 &237708825
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079632ff94d89234abd2c87e76e1f708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerView: {fileID: 0}
+  OpponentView: {fileID: 0}
 --- !u!1 &1069562798
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +929,7 @@ GameObject:
   - component: {fileID: 1069562799}
   - component: {fileID: 1069562801}
   - component: {fileID: 1069562800}
+  - component: {fileID: 1069562802}
   m_Layer: 5
   m_Name: Opponent
   m_TagString: Untagged
@@ -993,6 +997,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069562798}
   m_CullTransparentMesh: 1
+--- !u!114 &1069562802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069562798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61270c6a8f1347d597b66161f72ee1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 1434392747}
+  opponentPortrait: {fileID: 1493179207}
 --- !u!1 &1205348202
 GameObject:
   m_ObjectHideFlags: 0

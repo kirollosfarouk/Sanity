@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using Slurs;
+using UI;
 using UnityEngine;
-
 namespace Fight
 {
     public class FightManager : MonoBehaviour
     {
         public static FightManager Instance { get; private set; }
-  
+        
+        [SerializeField] private PlayerView PlayerView;
+        [SerializeField] private OpponentView OpponentView;
+        
         private Fight _currentFight;
-
         void Awake()
         {
             if (Instance != null && Instance != this) 
@@ -22,7 +24,6 @@ namespace Fight
             } 
         }
         
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             _currentFight = new Fight();
@@ -48,12 +49,13 @@ namespace Fight
             _currentFight.StartFight(opponent, playerFighter);
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (!_currentFight.FightEnded)
             {
-                _currentFight.Tick();    
+                _currentFight.Tick();
+                PlayerView.UpdateHealth(_currentFight._playerFighter.CurrentHealth,
+                    _currentFight._playerFighter.StartingHealth);
             }
         }
 

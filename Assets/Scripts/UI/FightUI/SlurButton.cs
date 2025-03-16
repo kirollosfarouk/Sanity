@@ -13,7 +13,7 @@ namespace UI
         
         private Slur _slur;
         
-        public void Initialize(Slurs.Slur intialSlur)
+        public void Initialize(Slur intialSlur)
         {
             _slur = intialSlur;
             _text.text = _slur.SlurText;
